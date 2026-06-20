@@ -1,0 +1,20 @@
+import pandas as pd
+from sklearn.linear_model import LinearRegression
+
+# load data
+data = pd.read_csv("data.csv")
+
+# x = row numbers (time)
+X = data.index.values.reshape(-1, 1)
+y = data["sales"]
+
+# model create
+model = LinearRegression()
+model.fit(X, y)
+
+# future prediction
+future = [[len(data)], [len(data)+1]]
+
+result = model.predict(future)
+
+print("Future sales:", result)
